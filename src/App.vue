@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getDays() {
-      fetch('http://localhost:3000/days')
+      fetch('https://backorgajournaliere.onrender.com/days')
         .then(response => response.json())
         .then(data => {
           this.days = data;
@@ -76,6 +76,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  min-width: 100vw;
   transition: background 0.5s ease;
 }
 

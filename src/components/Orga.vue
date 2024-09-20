@@ -93,7 +93,7 @@ export default {
     },
     methods: {
         save() {
-            fetch('http://localhost:3000/days', {
+            fetch('https://backorgajournaliere.onrender.com/days', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
