@@ -182,12 +182,13 @@ li {
 }
 
 input {
+    width: 80%;
     background-color: #1B1B1B;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-    margin: 1rem;
+    margin: 1rem 0;
 }
 
 .save-btn,

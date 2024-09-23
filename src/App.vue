@@ -2,8 +2,17 @@
   <div id="app">
     <div class="gradient-info">{{ currentGradientName }}</div>
     <button class="btn" @click="addDay">Ajouter une journée</button>
-    <div v-for="day in days" :key="day.id">
-      <Orga :day="day" />
+    <div v-if="days.length === 0 ">
+    <div v-if="loading">
+      <p class="loading-msg">
+        Chargement en cours...
+      </p>
+    </div>
+    </div>
+    <div v-else>
+      <div v-for="day in days" :key="day.id">
+        <Orga :day="day" />
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +27,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       days: [],
       currentGradientIndex: 0,
       gradients: [
@@ -42,7 +52,7 @@ export default {
         .then(response => response.json())
         .then(data => {
           this.days = data;
-          console.log(this.days);
+          this.loading = false
         });
     },
     addDay() {
@@ -76,7 +86,6 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  min-width: 100vw;
   transition: background 0.5s ease;
 }
 
@@ -102,6 +111,11 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.3s ease;
+}
+
+.loading-msg {
+  font-size: 1rem;
+  font-weight: regular;
 }
 
 .btn:hover {
