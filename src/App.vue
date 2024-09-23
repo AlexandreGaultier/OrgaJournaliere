@@ -1,15 +1,25 @@
 <template>
   <div id="app">
-    <div class="gradient-info">{{ currentGradientName }}</div>
-    <button class="btn" @click="addDay">Ajouter une journée</button>
+    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
+      <div class="gradient-info">{{ currentGradientName }}</div>
+    </a>
     <div v-if="days.length === 0 ">
     <div v-if="loading">
       <p class="loading-msg">
         Chargement en cours...
       </p>
+      <p class="loading-msg">
+        Le chargement peut être (très) long. Pour vous faire patienter, voici une petite citation : 
+      </p>
+      <p class="loading-msg">
+        "Parfois, l'attente est l'occasion parfaite pour faire une pause. Que pourriez-vous découvrir si vous preniez un instant pour observer ce qui vous entoure ? Le calme d'aujourd'hui prépare souvent les succès de demain."
+      </p>
+      <p class="loading-msg">
+        Merci de votre patience :)</p>
     </div>
     </div>
     <div v-else>
+      <button class="btn" @click="addDay">Ajouter une journée</button>
       <div v-for="day in days" :key="day.id">
         <Orga :day="day" />
       </div>
@@ -140,4 +150,12 @@ body {
   font-size: 0.8rem;
   z-index: 1000;
 }
+
+.loading-msg {
+  color: #ffffff;
+  width: 40%;
+  margin: 1rem auto;
+}
+
+
 </style>
