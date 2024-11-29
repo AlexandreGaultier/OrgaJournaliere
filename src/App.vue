@@ -1,21 +1,30 @@
 <template>
   <div id="app">
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">
-      <div class="gradient-info">{{ currentGradientName }}</div>
-    </a>
+    <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"> -->
+      <button class="gradient-info" @click="setRandomGradient">{{ currentGradientName }}</button>
+    <!-- </a> -->
     <div v-if="days.length === 0 ">
     <div v-if="loading">
       <p class="loading-msg">
         Chargement en cours...
       </p>
       <p class="loading-msg">
-        Le chargement peut être (très) long. Pour vous faire patienter, voici une petite citation : 
+        Le chargement peut être (très) long. Pour vous faire patienter, voici une petite citation :
+        <br>
+        (autrement cliquer sur le bouton ci-dessous pour voir les données)
       </p>
+      <br>
+      <a class="show-data-btn" href="https://backorgajournaliere.onrender.com/days" target="_blank">
+        > Voir les données < 
+      </a>  
+      <br>
+      <br>
       <p class="loading-msg">
         "Parfois, l'attente est l'occasion parfaite pour faire une pause. Que pourriez-vous découvrir si vous preniez un instant pour observer ce qui vous entoure ? Le calme d'aujourd'hui prépare souvent les succès de demain."
       </p>
       <p class="loading-msg">
-        Merci de votre patience :)</p>
+        Merci de votre patience :)
+      </p>
     </div>
     </div>
     <div v-else>
@@ -57,6 +66,10 @@ export default {
     }
   },
   methods: {
+    setRandomGradient() {
+      this.currentGradientIndex = Math.floor(Math.random() * this.gradients.length);
+      document.body.style.background = this.gradients[this.currentGradientIndex].value;
+    },
     getDays() {
       fetch('https://backorgajournaliere.onrender.com/days')
         .then(response => response.json())
@@ -97,6 +110,7 @@ body {
   padding: 0;
   min-height: 100vh;
   transition: background 0.5s ease;
+  font-family: Montserrat, sans-serif;
 }
 
 #app {
@@ -107,6 +121,24 @@ body {
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
+}
+
+.show-data-btn {
+  margin: 2rem auto;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.show-data-btn:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #ffffff18;
+  backdrop-filter: blur(10px);
 }
 
 .btn {
